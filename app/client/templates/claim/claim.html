@@ -1,0 +1,76 @@
+<template name="claim">
+    <section class="bg-white space-sm">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col">
+                    <div class="media align-items-center">
+                        <div class="media-body">
+                            <h1 class="mb-0">Token ABCDEF Incentives</h1>
+                            <h2 class="lead mb-2">Lorem ipsum</h2>
+                            <div class="d-flex align-items-center">
+                                <span class="badge badge-success mr-3">Airdrop in progress</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end of col-->
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <!--end of section-->
+    <section class="bg-white space-sm flush-with-above">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="30"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <!--end of col-->
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <!--end of section-->
+    <section class="space-sm">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-8">
+                    {{> claimButton}}
+                    
+                    <div class="card">
+                        <div class="card-header bg-secondary">
+                            Claim History
+                        </div>
+
+                        <ul class="list-group list-group-flush list-group-comments">
+                            <li class="list-group-item bg-secondary d-flex">
+                                <div class="d-flex">
+                                    <i class="icon-check h1 text-success mr-3"></i>
+                                    <div>
+                                        <span>Claimed 1234 tokens</span>
+                                        <small class="d-block text-muted">Completed at 3rd April 2018</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--end of col-->
+                <div class="col-12 col-md-4">
+                    {{> idVerificationCard}}
+                    <!-- end card -->
+                </div>
+                <!--end of col-->
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </section>
+    <!--end of section-->
+</template>

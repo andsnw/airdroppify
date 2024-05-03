@@ -1,0 +1,7 @@
+<template name="connect">
+    {{#if isWalletConnected}}
+    <a href="#" class="btn btn-secondary" id="disconnectButton">Disconnect {{getWalletAddress}}</a>
+    {{else}}
+    <a href="#" class="btn btn-primary" id="connectButton">Connect Wallet</a>
+    {{/if}}
+</template>
