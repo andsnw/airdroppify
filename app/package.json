@@ -10,7 +10,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.23.5",
+    "@wagmi/connectors": "^4.3.2",
+    "@wagmi/core": "^2.9.0",
+    "@web3modal/wagmi": "^4.1.11",
     "jquery": "^3.7.1",
-    "meteor-node-stubs": "^1.2.7"
+    "meteor-node-stubs": "^1.2.7",
+    "react": "^18.3.1",
+    "viem": "^2.9.31"
   }
 }

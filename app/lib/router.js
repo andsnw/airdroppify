@@ -10,7 +10,7 @@ Router.route('/claim/:airdropContractAddress', {
     name: 'claim'
 });
 
-// Router.route('/host', {
-//     name: 'host'
-// });
+Router.route('/host', {
+    name: 'host'
+});
 

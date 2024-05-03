@@ -1,3 +1,6 @@
 {
-    "app": "dev"
+    "app": "dev",
+    "public": {
+        "WALLETCONNECT_PROJECT_ID": "e5357cb753e692476d1c36ff8220d74f"
+    }
 }
