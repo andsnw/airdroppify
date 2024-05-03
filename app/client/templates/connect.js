@@ -4,6 +4,7 @@ Template.connect.helpers({
     isWalletConnected: () => {
         return Session.get('connectedStatus');
     },
+    
     getWalletAddress: () => {
         let address = Session.get('connectedAddress');
         return address.slice(0, 5) + '...' + address.slice(-2);
