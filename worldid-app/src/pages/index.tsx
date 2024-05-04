@@ -65,6 +65,8 @@ export default function Home() {
 				<p className="text-2xl mb-5">Airdroppify World ID Verification</p>
 				<p>Please verify your World ID to claim airdrops.</p>
 				<br />
+				<p>After verifying your World ID, you can close this window.</p>
+				<br />
 				<IDKitWidget
 					action={process.env.NEXT_PUBLIC_WLD_ACTION!}
 					app_id={process.env.NEXT_PUBLIC_WLD_APP_ID as `app_${string}`}

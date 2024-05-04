@@ -1,3 +1,4 @@
+
 import { walletConnectModal, walletConnectConfig, watchAccount, disconnect, getAccount } from "../../imports/client/WalletConnectWrapper";
 
 Template.connect.helpers({

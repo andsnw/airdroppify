@@ -17,6 +17,7 @@
     "meteor-node-stubs": "^1.2.7",
     "node-sass": "^9.0.0",
     "react": "^18.3.1",
+    "toaster-ui": "^1.1.5",
     "viem": "^2.9.31"
   },
   "devDependencies": {
