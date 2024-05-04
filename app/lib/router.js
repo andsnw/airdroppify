@@ -38,7 +38,7 @@ Router.route('/api/verifyWorldProof', {
     console.log(requestBody);
 
     Meteor.call('claimers/updateVerificationStatus', requestBody);
-
+    this.response.statusCode = 200;
     this.response.setHeader('Content-Type', 'application/json');
     this.response.end({message: 'Success!'});
 });
