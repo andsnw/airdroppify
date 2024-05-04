@@ -9,6 +9,9 @@ Template.idVerificationCard.helpers({
 
 Template.idVerificationCard.events({
     'click #verificationLink': (event) => {
+        
+        console.log('Starting ID verify')
+        doWorldIdVerification();
         console.log('Starting ID verify');
 
         if (!Session.get('connectedStatus')) {
