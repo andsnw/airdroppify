@@ -34,7 +34,7 @@ contract Airdropper {
 	struct AirdropProject {
 		uint256 airdropProjectID;
 		address airdropCreator;
-		string projectName;
+		//string projectName;
 		uint256 amount;
 		bool openforClaim;	
 	}
@@ -43,6 +43,10 @@ contract Airdropper {
 	uint256 projectIDITerator = 0; 
 
 	AirdropProject[] public airdropProjects;
+
+	constructor() {
+		creator = msg.sender;
+	}
 
 	//Structure for ProjectClaimers
 	struct AirdropProjectClaimer {
@@ -53,6 +57,9 @@ contract Airdropper {
 		bool claimStatus;	
 	}
 	AirdropProjectClaimer[] public airdropClaimers;
+
+	//mapping - Project ID -> Claimer -> Payment Status
+	mapping(uint256 => mapping(address => bool)) public projectClaimerWorldCoinCheckStatus;
 	
 	//------------------------------------------------
 	//Modifiers - Check Roles for Individual Creators
@@ -69,7 +76,7 @@ contract Airdropper {
 
 	//Function - Airdrop Creator - Create Airdrop
 	function createAirdrop(
-		string _projectName,
+		//string name,
 		uint256 _amount
 	) public {
 
@@ -79,11 +86,12 @@ contract Airdropper {
 		//Push to Mapping / Struct
 		 airdropProjects.push(
 			AirdropProject(
-				airdropProjectID = projectIDITerator, 
-				airdropCreator = msg.sender,
-				projectName = _projectName,
-				amount = _amount,
-				openforClaim = false
+				projectIDITerator, //airdropProjectID
+				msg.sender, //airdropCreator
+				//name, //projectName
+				_amount, //amount
+				false //openforClaim
+
 				)
 			);
 		//Push Mappings 
@@ -114,14 +122,16 @@ contract Airdropper {
     }
 
 	//Function - Claimer - WorldCoin ID Check
-	function updateWorldCoinIDCheck(uint256 _nftID, bool status) public onlyAirdropClaimer(_nftID) {
-		//require(msg.sender == owner);
+	function updateWorldCoinIDCheck (uint256 _nftID, bool checkStatus) public onlyAirdropClaimer(_nftID) {
+		require(projectAirdropClaimers[_nftID][msg.sender]==true);
+		projectClaimerWorldCoinCheckStatus[_nftID][msg.sender] = checkStatus;
 	}
 
 	//Function - Claimer - Claim Airdrop
 	function claimAirDrop(uint256 _nftID, uint amount) public onlyAirdropClaimer( _nftID) {
 		//require world idcheck to be confirmed / check current claim status is false 
-		
+		require(projectClaimerWorldCoinCheckStatus[_nftID][msg.sender]==true);
+
 		//escrow amount pay - amount captured in storage
 		require(projectReleaseforClaim[_nftID] == true);
 
@@ -143,7 +153,7 @@ contract Airdropper {
     }
 
     function withdraw() external onlyOwner {
-        payable(owner).transfer(address(this).balance);
+        payable(creator).transfer(address(this).balance);
     }
 
 }
