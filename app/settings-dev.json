@@ -1,6 +1,8 @@
 {
     "app": "dev",
     "public": {
-        "WALLETCONNECT_PROJECT_ID": "e5357cb753e692476d1c36ff8220d74f"
+        "WALLETCONNECT_PROJECT_ID": "e5357cb753e692476d1c36ff8220d74f",
+        "WORLDID_PROJECT_ID": "app_staging_1eac87e9ceaef8fd6467f3d4b83eea8f",
+        "WORLDID_APP_URL": "http://localhost:4000"
     }
 }

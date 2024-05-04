@@ -1,6 +1,6 @@
-import { getIdVerificationStatus, doWorldIdVerification } from '/imports/client/WorldIdWrapper';
+import { getIdVerificationStatus, doInitWorldId } from '/imports/client/WorldIdWrapper';
 
-Template .idVerificationCard.helpers({
+Template.idVerificationCard.helpers({
     isIdVerified: () => {
         return getIdVerificationStatus();
     },
@@ -9,6 +9,6 @@ Template .idVerificationCard.helpers({
 Template.idVerificationCard.events({
     'click #verificationLink': (event) => {
         console.log('Starting ID verify')
-        doWorldIdVerification();
+        doInitWorldId();
     }
 })

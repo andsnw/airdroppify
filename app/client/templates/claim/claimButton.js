@@ -1,4 +1,4 @@
-import { getIdVerificationStatus, doWorldIdVerification } from '/imports/client/WorldIdWrapper';
+import { getIdVerificationStatus, doInitWorldId } from '/imports/client/WorldIdWrapper';
 
 Template.claimButton.helpers({
     isIdVerified: () => {
@@ -9,7 +9,9 @@ Template.claimButton.helpers({
 Template.claimButton.events({
     'click #verifyId': (event) => {
         console.log('Starting ID verify')
-        doWorldIdVerification();
+        doInitWorldId((err, res) => {
+            console.log(err, res);
+        });
     },
 
     'click #claimAirdrop': (event) => {
