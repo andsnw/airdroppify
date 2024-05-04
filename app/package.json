@@ -17,8 +17,8 @@
     "jquery": "^3.7.1",
     "meteor-node-stubs": "^1.2.7",
     "moment": "^2.30.1",
-    "node-sass": "^9.0.0",
     "react": "^18.3.1",
+    "sass": "^1.76.0",
     "toaster-ui": "^1.1.5",
     "viem": "^2.9.31",
     "web3modal": "^1.9.12"

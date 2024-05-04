@@ -20,3 +20,6 @@ Template.idVerificationCard.events({
         doInitWorldId();
     }
 })
+
+//once we get the world verfication status 
+//and if it is true we can call store proof function and store the proof on chain

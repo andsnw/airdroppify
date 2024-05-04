@@ -1,4 +1,10 @@
 import { errorToast, successToast } from "../../../imports/client/Toaster";
+import Web3Modal from 'web3modal';
+import { ethers } from 'ethers';
+import Abi from './abi.json';
+
+
+            
 
 Template.host.helpers({
     getRandomNumber: () => {
@@ -17,9 +23,8 @@ Template.host.helpers({
     },
 });
 
-Template.host.events({
-
-    'submit #createAirdrop': (event) => {
+Template.host.events({ 
+    'submit #createAirdrop': async (event) => {
         event.preventDefault();
 
         if (!Session.get('connectedStatus')) {
@@ -33,18 +38,37 @@ Template.host.events({
         const amount = document.getElementById('amount').value;
         const contractAddress = document.getElementById('contractAddress').value;
 
-        Meteor.call('airdrops/create', {
-            name, description, amount, contractAddress,
-            ownerAddress: Session.get('connectedAddress'),
-            sessionId: Session.get('connectedSessionId'),
-        }, (err, res) => {
-            $('.submitBtn').prop('disabled', false);
-            if (err) {
-                errorToast(err.message)
-            } else if (res) {
-                successToast('Created new airdrop')
-                Router.go('claim', { airdropContractAddress: contractAddress })
-            }
-        })
+
+   console.log(name);
+
+
+            Meteor.call('airdrops/create', {
+                name, description, amount, contractAddress,
+                ownerAddress: Session.get('connectedAddress'),
+                sessionId: Session.get('connectedSessionId'),
+            }, (err, res) => {
+                $('.submitBtn').prop('disabled', false);
+                if (err) {
+                    errorToast(err.message)
+                } else if (res) {
+                    successToast('Created new airdrop')
+                    Router.go('claim', { airdropContractAddress: contractAddress })
+                }
+            })
+
+            const web3Modal = new Web3Modal();
+        
+            const connection = await web3Modal.connect();
+            const provider = new ethers.providers.Web3Provider(connection);
+            const signer = provider.getSigner();
+            console.log(signer);
+            const contract = new ethers.Contract("0x11f71800F9Dfc9cE0a96a93f8bd9907038B0503c", Abi, signer);
+            console.log(contract)
+            const tx = await contract.storeAirdrop(name,contractAddress,amount);
+            console.log(tx);
+            const tx1 = await contract.getAirdrop();
+           
+            console.log(tx1);   
+
     }
 });
