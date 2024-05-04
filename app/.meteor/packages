@@ -25,3 +25,6 @@ blaze-hot               # Update files using Blaze's API with HMR
 session
 iron:router
 msavin:mongol
+react-template-helper
+check
+random

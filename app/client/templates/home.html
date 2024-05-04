@@ -33,27 +33,44 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#if hasAirdrops}}
+                            {{#each liveAirdrops}}
                             <tr class="bg-white">
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <span class="h6 mb-0">Token ABCDE airdrop
+                                            <span class="h6 mb-0">{{name}}
                                             </span>
                                         </div>
                                     </div>
                                 </th>
-                                <td>1234 arb token</td>
+                                <td>{{amount}}</td>
                                 <td>Open</td>
                                 <td>
                                     <a href="#">
-                                        <a href="/claim/asdf" class="viewAirdrop">View airdrop ›</a>
+                                        <a href="/claim/{{contractAddress}}" class="viewAirdrop">View airdrop ›</a>
                                     </a>
                                 </td>
                             </tr>
-                            <!-- <tr class="table-divider">
-                                <th></th>
+                            {{/each}}
+                            {{else}}
+                            <tr class="bg-white">
+                                <th scope="row" class="w-25">
+                                  <a class="media align-items-center" href="#">
+                                    <div class="media-body">
+                                      <span class="h6 mb-0">No live airdrops</span>
+                                    </div>
+                                  </a>
+                                </th>
+                                <td class="w-50">
+                                  
+                                </td>
                                 <td></td>
-                            </tr> -->
+                                <td>
+
+                                </td>
+                              </tr>
+                            {{/if}}
                         </tbody>
                     </table>
                 </div>

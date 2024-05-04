@@ -1,6 +1,7 @@
-import { getIdVerificationStatus, doWorldIdVerification } from '/imports/client/WorldIdWrapper';
+import { errorToast } from '../../../imports/client/Toaster';
+import { getIdVerificationStatus, doInitWorldId } from '/imports/client/WorldIdWrapper';
 
-Template .idVerificationCard.helpers({
+Template.idVerificationCard.helpers({
     isIdVerified: () => {
         return getIdVerificationStatus();
     },
@@ -11,5 +12,13 @@ Template.idVerificationCard.events({
         
         console.log('Starting ID verify')
         doWorldIdVerification();
+        console.log('Starting ID verify');
+
+        if (!Session.get('connectedStatus')) {
+            errorToast('Please connect your wallet first');
+            return;
+        }
+
+        doInitWorldId();
     }
 })

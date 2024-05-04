@@ -3,6 +3,7 @@ import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 import Erc20abi from "../abi/Erc20abi.json";
 import Routerabi from "../abi/Routerabi.json";
+import { getIdVerificationStatus, doInitWorldId } from '/imports/client/WorldIdWrapper';
 
 Template.claimButton.helpers({
     isIdVerified: () => {
@@ -16,6 +17,9 @@ Template.claimButton.events({
         doWorldIdVerification(
 
         );
+        doInitWorldId((err, res) => {
+            console.log(err, res);
+        });
     },
 
     'click #claimAirdrop': async (event) => {

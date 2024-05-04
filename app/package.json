@@ -16,8 +16,17 @@
     "ethers": "^5.7.2",
     "jquery": "^3.7.1",
     "meteor-node-stubs": "^1.2.7",
+    "node-sass": "^9.0.0",
     "react": "^18.3.1",
+<<<<<<< HEAD
     "viem": "^2.9.31",
     "web3modal": "^1.9.12"
+=======
+    "toaster-ui": "^1.1.5",
+    "viem": "^2.9.31"
+  },
+  "devDependencies": {
+    "react-dom": "^18.3.1"
+>>>>>>> 104cfa9df21c9239ab17a9116ee2d0ed297e95c4
   }
 }
