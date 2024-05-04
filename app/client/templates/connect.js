@@ -29,7 +29,7 @@ Template.connect.onCreated(() => {
                 console.log('Account change detected', account);
                 if (account.isConnected) {
                     console.log(account);
-                    const sessionId = Random.secret;
+                    const sessionId = Random.secret();
                     Session.set('connectedStatus', true);
                     Session.set('connectedAddress', account.address);
                     Session.set('connectedSessionId', sessionId);
