@@ -29,10 +29,10 @@ export default function Home() {
 				}),
 			})
 				.then(response => response.json())
-				.then(data => console.log(data))
-				.then(() => window.close())
+				.then(data => { console.log(data); window.close() })
 				.catch((error) => {
 					console.error('Error:', error);
+					window.close()
 				});
 		} else {
 			console.error('Error: callbackUrl parameter is missing in the URL');
