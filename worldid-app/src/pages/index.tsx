@@ -30,13 +30,13 @@ export default function Home() {
 			})
 				.then(response => response.json())
 				.then(data => console.log(data))
+				.then(() => window.close())
 				.catch((error) => {
 					console.error('Error:', error);
 				});
 		} else {
 			console.error('Error: callbackUrl parameter is missing in the URL');
 		}
-		window.close();
 	};
 
 	const handleProof = async (result: ISuccessResult) => {

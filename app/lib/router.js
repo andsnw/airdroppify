@@ -16,7 +16,7 @@ Router.route('/claim/:airdropContractAddress', {
         const sessionId = Session.get('connectedSessionId')
         return [
             Meteor.subscribe('airdrops/getByContractAddress', this.params.airdropContractAddress),
-            Meteor.subscribe('claimers/getCurrentClaimer', {
+            currentAddress && sessionId && Meteor.subscribe('claimers/getCurrentClaimer', {
                 address: currentAddress,
                 sessionId,
             }),
@@ -34,6 +34,9 @@ Router.route('/api/verifyWorldProof', {
     var requestBody = this.request.body;
 
     const body = JSON.parse(requestBody);
+
+    console.log('Received API req')
+    console.log(body);
 
     Meteor.call('claimers/updateVerificationStatus', body);
 
