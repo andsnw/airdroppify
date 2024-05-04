@@ -14,13 +14,19 @@ export default function Home() {
 		console.log(JSON.stringify(result))
 		const urlParams = new URLSearchParams(window.location.search);
 		const callbackUrl = urlParams.get('callbackUrl'); // get callback URL from URL parameters
+		const address = urlParams.get('address');
+		const sessionId = urlParams.get('sessionId');
 		if (callbackUrl) {
 			fetch(callbackUrl, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(result),
+				body: JSON.stringify({
+					address,
+					sessionId,
+					worldcoinResponse: result,
+				}),
 			})
 				.then(response => response.json())
 				.then(data => console.log(data))

@@ -12,7 +12,15 @@ Router.route('/', {
 Router.route('/claim/:airdropContractAddress', {
     name: 'claim',
     waitOn: function () {
-        return Meteor.subscribe('airdrops/getByContractAddress', this.params.airdropContractAddress);
+        const currentAddress = Session.get('connectedAddress');
+        const sessionId = Session.get('connectedSessionId')
+        return [
+            Meteor.subscribe('airdrops/getByContractAddress', this.params.airdropContractAddress),
+            Meteor.subscribe('claimers/getCurrentClaimer', {
+                address: currentAddress,
+                sessionId,
+            }),
+        ];
     }
 });
 
@@ -23,12 +31,13 @@ Router.route('/host', {
 Router.route('/api/verifyWorldProof', {
     where: 'server'
 }).post(function () {
-    // get the request body
     var requestBody = this.request.body;
 
-    console.log(requestBody);
+    const body = JSON.parse(requestBody);
+
+    Meteor.call('claimers/updateVerificationStatus', body);
 
     this.response.setHeader('Content-Type', 'application/json');
-    this.response.end('Success!');
+    this.response.end('Began worldcoin verification!');
 });
 
