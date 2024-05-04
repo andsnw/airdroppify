@@ -3,7 +3,7 @@ import { watchAccount, disconnect, getAccount } from '@wagmi/core'
 import { createWeb3Modal } from '@web3modal/wagmi'
 
 import { reconnect, http, createConfig } from '@wagmi/core'
-import { base } from '@wagmi/core/chains'
+import { baseSepolia } from '@wagmi/core/chains'
 import { coinbaseWallet, walletConnect, injected } from '@wagmi/connectors'
 
 // 1. Get a project ID at https://cloud.walletconnect.com
@@ -17,9 +17,9 @@ const metadata = {
 }
 
 const walletConnectConfig = createConfig({
-  chains: [base],
+  chains: [baseSepolia],
   transports: {
-    [base.id]: http()
+    [baseSepolia.id]: http()
   },
   connectors: [
     walletConnect({ projectId, metadata, showQrModal: false }),
