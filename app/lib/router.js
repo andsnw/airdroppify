@@ -22,12 +22,12 @@ Router.route('/claim/:airdropContractAddress', {
     subscriptions: function() {
         const currentAddress = Session.get('connectedAddress');
         const sessionId = Session.get('connectedSessionId')
-        Meteor.subscribe('claimers/getCurrentClaimer', {
-            address: currentAddress,
-            sessionId,
-        });
         
         if (currentAddress) {
+            Meteor.subscribe('claimers/getCurrentClaimer', {
+                address: currentAddress,
+                sessionId,
+            });
             Meteor.subscribe('claims/getClaimsByAddress', {
                 address: currentAddress,
                 contractAddress: this.params.airdropContractAddress,

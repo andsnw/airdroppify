@@ -44,4 +44,40 @@ Meteor.methods({
 
         return 'Done';
     },
+
+    'airdrops/hideListing': ({ contractAddress, ownerAddress, sessionId }) => {
+        check(contractAddress, String);
+        check(ownerAddress, String);
+        check(sessionId, String);
+
+        // Verify the caller
+        const caller = Claimers.findOne({
+            address: ownerAddress,
+            sessionId,
+        });
+
+        if (!caller) {
+            throw new Meteor.Error('Unauthorized');
+        }
+
+        // Check the airdrop belongs to user
+        const airdrop = Airdrops.findOne({
+            ownerAddress,
+            contractAddress,
+        });
+
+        if (!airdrop) {
+            throw new Meteor.Error('Airdrop not found');
+        }
+
+        Airdrops.update({
+            contractAddress,
+            ownerAddress,
+        }, {
+            $set: {
+                isLive: false,
+            }
+        })
+        return 'Done';
+    },
 })

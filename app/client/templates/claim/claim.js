@@ -1,11 +1,17 @@
 import moment from 'moment';
 import { getIdVerificationStatus } from "../../../imports/client/WorldIdWrapper";
-import { errorToast } from '../../../imports/client/Toaster';
+import { errorToast, successToast } from '../../../imports/client/Toaster';
 
 Template.claim.helpers({
+    isOwner: () => {
+        const airdrop = Airdrops.findOne({ contractAddress: Router.current().params.airdropContractAddress, ownerAddress: Session.get('connectedAddress') });
+        return airdrop;
+    },
+
     getRandomNumber: () => {
         return Math.floor(Math.random() * 10) + 1;
     },
+
     getReadableDate: (date) => {
         return moment(date).fromNow();
     },
@@ -27,6 +33,32 @@ Template.claim.helpers({
             contractAddress: Router.current().params.airdropContractAddress,
             address: Session.get('connectedAddress'),
         });
+    }
+})
+
+Template.claim.events({
+    'click #deleteListing': (event) => {
+        event.preventDefault();
+        if (!confirm("Are you sure you want to delete this listing?")) {
+            event.stopPropagation();
+            return;
+        }
+
+        $('#deleteListing').attr('disabled', true);
+
+        Meteor.call('airdrops/hideListing', {
+            contractAddress: Router.current().params.airdropContractAddress,
+            ownerAddress: Session.get('connectedAddress'),
+            sessionId: Session.get('connectedSessionId'),
+        }, (err, res) => {
+            $('#deleteListing').attr('disabled', true);
+            if (err) {
+                errorToast(err.message)
+            } else if (res) {
+                successToast('Deleted airdrop listing');
+                Router.go('home');
+            }
+        })
     }
 })
 

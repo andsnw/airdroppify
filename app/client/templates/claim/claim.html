@@ -4,7 +4,8 @@
             <div class="row justify-content-between">
                 <div class="col">
                     <div class="media align-items-center">
-                        <img alt="Image" src="/images/noun{{getRandomNumber}}.png" class="avatar avatar-lg avatar-square rounded">
+                        <img alt="Image" src="/images/noun{{getRandomNumber}}.png"
+                            class="avatar avatar-lg avatar-square rounded">
                         <div class="media-body">
                             <h1 class="mb-0">{{getCurrentAirdrop.name}}</h1>
                             <h2 class="lead mb-2">{{getCurrentAirdrop.description}}</h2>
@@ -15,6 +16,12 @@
                     </div>
                 </div>
                 <!--end of col-->
+                {{#if isOwner}}
+                <div class="col-auto">
+                    <a href="#" class="btn btn-outline-danger" id="deleteListing"><i class="icon-cross mr-1"></i>
+                        Delete</a>
+                </div>
+                {{/if}}
                 <div class="col-auto">
                     <a href="https://sepolia.basescan.org/address/{{getCurrentAirdrop.contractAddress}}" target="_blank"
                         class="btn btn-outline-secondary"><i class="icon-download mr-1"></i> Contract Address</a>
