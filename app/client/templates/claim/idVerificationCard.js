@@ -8,6 +8,7 @@ Template .idVerificationCard.helpers({
 
 Template.idVerificationCard.events({
     'click #verificationLink': (event) => {
+        
         console.log('Starting ID verify')
         doWorldIdVerification();
     }
