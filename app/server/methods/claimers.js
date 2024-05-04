@@ -42,6 +42,9 @@ Meteor.methods({
             throw new Meteor.Error('Claimer not found')
         }
 
+        // TODO: Store the worldcoin proof on chain
+        
+
         const updateClaimer = Claimers.update({
             address,
             sessionId,
