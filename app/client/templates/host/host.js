@@ -2,7 +2,18 @@ import { errorToast, successToast } from "../../../imports/client/Toaster";
 
 Template.host.helpers({
     getRandomNumber: () => {
-        return Math.floor(Math.random() * 10) + 1;
+        return Math.floor(Math.random() * 10000000) + 1;
+    },
+    
+    getUnlimitUrl: () => {
+        const MERCHANT_ID = Meteor.settings.public.UNLIMIT_MERCHANT_ID;
+        const url = new URL('https://onramp-sandbox.gatefi.com/');
+        url.searchParams.append('merchantId', MERCHANT_ID);
+        url.searchParams.append('walletLock', true);
+        url.searchParams.append('isSandbox', true);
+        url.searchParams.append('walletAddress', Session.get('connectedAddress'));
+        url.searchParams.append('availableCrypto', ['USDT'])
+        return url.href;
     },
 });
 

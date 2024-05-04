@@ -6,11 +6,9 @@ const priceFeed = async (event) => {
     event.preventDefault();
     const contractAddressUSD = '0xdC6a8E15ad8617596E4467F36D93Af24E1d6160f'
     const contractAddressETH = '0x09b61578152B7033A2E4B167748F77c3504797b9'
- 
     
     const contract1ABI_USD = Dataconsumerv3;
     const contract1ABI_ETH = Dataconsumerv3;
-
 
     // ABI of your contract
     const privateKey = '4c4dc9b4edbb8c4430e782db0ba161a38a1a705d9a246ac6c16d937bd73d35fd';

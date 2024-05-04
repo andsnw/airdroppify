@@ -3,6 +3,6 @@ Template.navbar.helpers({
         return Session.get('connectedStatus');
     },
     getRandomNumber: () => {
-        return Math.floor(Math.random() * 10) + 1;
+        return Math.floor(Math.random() * 10000000) + 1;
     },
 })

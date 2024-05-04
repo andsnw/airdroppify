@@ -8,10 +8,6 @@ Template.claim.helpers({
         return airdrop;
     },
 
-    getRandomNumber: () => {
-        return Math.floor(Math.random() * 10) + 1;
-    },
-
     getReadableDate: (date) => {
         return moment(date).fromNow();
     },
