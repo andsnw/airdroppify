@@ -15,7 +15,8 @@
                 </div>
                 <!--end of col-->
                 <div class="col-auto">
-                    <a href="https://sepolia.basescan.org/address/{{getCurrentAirdrop.contractAddress}}" target="_blank" class="btn btn-outline-secondary"><i class="icon-download mr-1"></i> Contract Address</a>
+                    <a href="https://sepolia.basescan.org/address/{{getCurrentAirdrop.contractAddress}}" target="_blank"
+                        class="btn btn-outline-secondary"><i class="icon-download mr-1"></i> Contract Address</a>
                 </div>
             </div>
             <!--end of row-->
@@ -28,16 +29,19 @@
             <div class="row mb-3">
                 <div class="col">
                     <div class="progress">
-                        {{#if isWalletConnected}}
+                        {{#if isIdVerified}}
+                        <div class="progress-bar bg-primary opacity-50" role="progressbar" style="width: 50%"
+                            aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="30"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        {{else if isWalletConnected}}
                         <div class="progress-bar bg-primary opacity-50" role="progressbar" style="width: 25%"
                             aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="30"
                             aria-valuemin="0" aria-valuemax="100"></div>
-
                         {{else}}
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="30"
                             aria-valuemin="0" aria-valuemax="100"></div>
-
                         {{/if}}
                     </div>
                 </div>
@@ -59,11 +63,19 @@
                 </div>
                 {{/if}}
                 <!--end of col-->
+                {{#if isIdVerified}}
+                <div class="col">
+                    <span>Verify</span>
+                    <br>
+                    <small class="text-muted"><i class="icon-calendar mr-1"></i>Done</small>
+                </div>
+                {{else}}
                 <div class="col">
                     <span>Verify</span>
                     <br>
                     <small class="text-muted"><i class="icon-calendar mr-1"></i>Not Done</small>
                 </div>
+                {{/if}}
                 <!--end of col-->
                 <div class="col">
                     <span>Claim</span>

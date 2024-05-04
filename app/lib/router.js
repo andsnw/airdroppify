@@ -33,14 +33,13 @@ Router.route('/api/verifyWorldProof', {
 }).post(function () {
     var requestBody = this.request.body;
 
-    const body = JSON.parse(requestBody);
 
     console.log('Received API req')
-    console.log(body);
+    console.log(requestBody);
 
-    Meteor.call('claimers/updateVerificationStatus', body);
+    Meteor.call('claimers/updateVerificationStatus', requestBody);
 
     this.response.setHeader('Content-Type', 'application/json');
-    this.response.end('Began worldcoin verification!');
+    this.response.end({message: 'Success!'});
 });
 

@@ -5,7 +5,6 @@ Meteor.methods({
 
         const claimer = Claimers.findOne({
             address,
-            sessionId,
         });
 
         if (!claimer) {
@@ -18,7 +17,6 @@ Meteor.methods({
 
         Claimers.update({
             address,
-            sessionId,
         }, {
             $set: { sessionId },
         });
@@ -29,7 +27,10 @@ Meteor.methods({
     'claimers/updateVerificationStatus': ({ address, sessionId, worldcoinResponse }) => {
         check(address, String);
         check(sessionId, String);
+        check(worldcoinResponse, Object);
 
+        console.log('Worldcoin resp');
+        console.log(worldcoinResponse)
 
         const claimer = Claimers.findOne({
             address,
@@ -41,23 +42,21 @@ Meteor.methods({
             throw new Meteor.Error('Claimer not found')
         }
 
-        try {
-            const worldcoinResponse = JSON.parse(worldcoinResponse);
-            Claimers.update({
-                address,
-                sessionId,
-            }, {
-                $set: {
-                    idVerified: true,
-                    worldcoinId: worldcoinResponse,
-                    verifiedAt: new Date(),
-                }
-            })
-        } catch (error) {
-            console.error(error)
-            throw new Meteor.Error('Failed to store worldcoin proof');
+        const updateClaimer = Claimers.update({
+            address,
+            sessionId,
+        }, {
+            $set: {
+                idVerified: true,
+                worldcoinId: worldcoinResponse,
+                verifiedAt: new Date(),
+            }
+        });
+
+        if (updateClaimer === 0) {
+            throw new Meteor.Error('Failed to update claimer')
         }
 
-
+        return 'Successfully updated claimer';
     },
 })
