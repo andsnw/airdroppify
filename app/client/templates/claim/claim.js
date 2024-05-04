@@ -3,6 +3,9 @@ import { getIdVerificationStatus } from "../../../imports/client/WorldIdWrapper"
 import { errorToast } from '../../../imports/client/Toaster';
 
 Template.claim.helpers({
+    getRandomNumber: () => {
+        return Math.floor(Math.random() * 10) + 1;
+    },
     getReadableDate: (date) => {
         return moment(date).fromNow();
     },

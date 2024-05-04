@@ -1,7 +1,9 @@
 import { errorToast, successToast } from "../../../imports/client/Toaster";
 
 Template.host.helpers({
-
+    getRandomNumber: () => {
+        return Math.floor(Math.random() * 10) + 1;
+    },
 });
 
 Template.host.events({
