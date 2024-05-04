@@ -45,7 +45,7 @@
                                     </div>
                                 </th>
                                 <td>{{amount}}</td>
-                                <td>Open</td>
+                                <td>{{#if hasAlreadyClaimed contractAddress}}Claimed{{else}}Open{{/if}}</td>
                                 <td>
                                     <a href="#">
                                         <a href="/claim/{{contractAddress}}" class="viewAirdrop">View airdrop ›</a>

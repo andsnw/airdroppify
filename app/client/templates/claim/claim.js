@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { getIdVerificationStatus } from "../../../imports/client/WorldIdWrapper";
+import { errorToast } from '../../../imports/client/Toaster';
 
 Template.claim.helpers({
     getReadableDate: (date) => {
@@ -23,5 +24,13 @@ Template.claim.helpers({
             contractAddress: Router.current().params.airdropContractAddress,
             address: Session.get('connectedAddress'),
         });
+    }
+})
+
+Template.claim.onRendered(() => {
+    const airdrop = Airdrops.findOne();
+    if (!airdrop) {
+        errorToast('Airdrop not found');
+        Router.go('home');
     }
 })

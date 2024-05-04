@@ -1,4 +1,10 @@
 Template.home.helpers({
+    hasAlreadyClaimed: (contractAddress) => {
+        return Claims.findOne({
+            contractAddress,
+            address: Session.get('connectedAddress'),
+        });
+    },
 
     liveAirdrops: () => {
         const isWalletConnected = Session.get('connectedStatus');

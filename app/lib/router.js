@@ -6,6 +6,14 @@ Router.route('/', {
     name: 'home',
     subscriptions: () => {
         Meteor.subscribe('airdrops/getLiveAirdrops');
+        const currentAddress = Session.get('connectedAddress');
+        const sessionId = Session.get('connectedSessionId')
+        if (currentAddress) {
+            Meteor.subscribe('claims/getClaimsByUser', {
+                address: currentAddress,
+                sessionId,
+            });
+        }
     },
 });
 
