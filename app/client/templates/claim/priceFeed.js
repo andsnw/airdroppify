@@ -1,6 +1,6 @@
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
-import Dataconsumerv3 from "../abi/Dataconsumerv3.json";
+import Dataconsumerv3 from "/imports/api/abi/Dataconsumerv3.json";
 
 const priceFeed = async (event) => {
     event.preventDefault();
