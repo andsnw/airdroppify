@@ -3,7 +3,7 @@ Template.claim.helpers({
         return Session.get('connectedStatus');
     },
 
-    renderClaimProgress: () => {
-        
-    },
+    getCurrentAirdrop: () => {
+        return Airdrops.findOne({ contractAddress: Router.current().params.airdropContractAddress })
+    }
 })

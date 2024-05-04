@@ -3,11 +3,17 @@ Router.configure({
 })
 
 Router.route('/', {
-    name: 'home'
+    name: 'home',
+    subscriptions: () => {
+        Meteor.subscribe('airdrops/getLiveAirdrops');
+    },
 });
 
 Router.route('/claim/:airdropContractAddress', {
-    name: 'claim'
+    name: 'claim',
+    waitOn: function () {
+        return Meteor.subscribe('airdrops/getByContractAddress', this.params.airdropContractAddress);
+    }
 });
 
 Router.route('/host', {
@@ -17,7 +23,7 @@ Router.route('/host', {
 Router.route('/api/verifyWorldProof', {
     where: 'server'
 }).post(function () {
-   // get the request body
+    // get the request body
     var requestBody = this.request.body;
 
     console.log(requestBody);
