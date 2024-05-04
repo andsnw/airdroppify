@@ -30,6 +30,7 @@ export default function Home() {
 		} else {
 			console.error('Error: callbackUrl parameter is missing in the URL');
 		}
+		window.close();
 	};
 
 	const handleProof = async (result: ISuccessResult) => {

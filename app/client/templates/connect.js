@@ -4,7 +4,7 @@ Template.connect.helpers({
     isWalletConnected: () => {
         return Session.get('connectedStatus');
     },
-    
+
     getWalletAddress: () => {
         let address = Session.get('connectedAddress');
         return address.slice(0, 5) + '...' + address.slice(-2);
@@ -28,11 +28,18 @@ Template.connect.onCreated(() => {
                 console.log('Account change detected', account);
                 if (account.isConnected) {
                     console.log(account);
+                    const sessionId = Random.secret;
                     Session.set('connectedStatus', true);
                     Session.set('connectedAddress', account.address);
+                    Session.set('connectedSessionId', sessionId);
+                    Meteor.call('claimers/setSession', {
+                        address: account.address,
+                        sessionId,
+                    });
                 } else {
                     Session.set('connectedStatus', false);
                     delete Session.keys.connectedAddress;
+                    delete Session.keys.connectedSessionId;
                 }
             }
         }
