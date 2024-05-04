@@ -18,11 +18,13 @@ Router.route('/claim/:airdropContractAddress', {
             address: currentAddress,
             sessionId,
         });
-
-        Meteor.subscribe('claims/getClaimsByAddress', {
-            address: currentAddress,
-            contractAddress: this.params.airdropContractAddress,
-        });
+        
+        if (currentAddress) {
+            Meteor.subscribe('claims/getClaimsByAddress', {
+                address: currentAddress,
+                contractAddress: this.params.airdropContractAddress,
+            });
+        }
     },
     waitOn: function () {
 

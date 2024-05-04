@@ -139,7 +139,12 @@
                                     <i class="icon-check h1 text-success mr-3"></i>
                                     <div>
                                         <span>Claimed $1 USD {{getReadableDate existingClaim.claimedAt}}</span>
-                                        <small class="d-block text-muted">{{existingClaim.transactionHash}}</small>
+                                        <small class="d-block text-muted">
+                                            <a href="https://ccip.chain.link/tx/{{existingClaim.transactionHash}}"
+                                                target="_blank">
+                                                {{existingClaim.transactionHash}}
+                                            </a>
+                                        </small>
                                     </div>
                                 </div>
                             </li>
