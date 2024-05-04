@@ -29,7 +29,12 @@
             <div class="row mb-3">
                 <div class="col">
                     <div class="progress">
-                        {{#if isIdVerified}}
+                        {{#if existingClaim}}
+                        <div class="progress-bar bg-primary opacity-50" role="progressbar" style="width: 75%"
+                            aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="30"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        {{else if isIdVerified}}
                         <div class="progress-bar bg-primary opacity-50" role="progressbar" style="width: 50%"
                             aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="30"
@@ -78,9 +83,19 @@
                 {{/if}}
                 <!--end of col-->
 
-                 
-
-
+                {{#if existingClaim}}
+                <div class="col opacity-50">
+                    <span>Claim</span>
+                    <br>
+                    <small class="text-muted"><i class="icon-calendar mr-1"></i>Done</small>
+                </div>
+                <!--end of col-->
+                <div class="col">
+                    <span>Completed</span>
+                    <br>
+                    <small class="text-muted"><i class="icon-calendar mr-1"></i>Done</small>
+                </div>
+                {{else}}
                 <div class="col">
                     <span>Claim</span>
                     <br>
@@ -92,6 +107,7 @@
                     <br>
                     <small class="text-muted"><i class="icon-calendar mr-1"></i>Not Done</small>
                 </div>
+                {{/if}}
                 <!--end of col-->
             </div>
             <!--end of row-->
@@ -115,17 +131,20 @@
                             Claim History
                         </div>
 
+
+                        {{#if existingClaim}}
                         <ul class="list-group list-group-flush list-group-comments">
                             <li class="list-group-item bg-secondary d-flex">
                                 <div class="d-flex">
                                     <i class="icon-check h1 text-success mr-3"></i>
                                     <div>
-                                        <span>Claimed 1234 tokens</span>
-                                        <small class="d-block text-muted">Completed at 3rd April 2018</small>
+                                        <span>Claimed $1 USD</span>
+                                        <small class="d-block text-muted">Completed at {{getReadableDate existingClaim.claimedAt}}</small>
                                     </div>
                                 </div>
                             </li>
                         </ul>
+                        {{/if}}
                     </div>
                 </div>
 

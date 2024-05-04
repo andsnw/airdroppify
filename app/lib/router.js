@@ -11,15 +11,23 @@ Router.route('/', {
 
 Router.route('/claim/:airdropContractAddress', {
     name: 'claim',
-    waitOn: function () {
+    subscriptions: function() {
         const currentAddress = Session.get('connectedAddress');
         const sessionId = Session.get('connectedSessionId')
+        Meteor.subscribe('claimers/getCurrentClaimer', {
+            address: currentAddress,
+            sessionId,
+        });
+
+        Meteor.subscribe('claims/getClaimsByAddress', {
+            address: currentAddress,
+            contractAddress: this.params.airdropContractAddress,
+        });
+    },
+    waitOn: function () {
+
         return [
             Meteor.subscribe('airdrops/getByContractAddress', this.params.airdropContractAddress),
-            currentAddress && sessionId && Meteor.subscribe('claimers/getCurrentClaimer', {
-                address: currentAddress,
-                sessionId,
-            }),
         ];
     }
 });
@@ -39,7 +47,6 @@ Router.route('/api/verifyWorldProof', {
 
     Meteor.call('claimers/updateVerificationStatus', requestBody);
     this.response.statusCode = 200;
-    this.response.setHeader('Content-Type', 'application/json');
-    this.response.end({message: 'Success!'});
+    this.response.end('Verification status updated successfully.');
 });
 

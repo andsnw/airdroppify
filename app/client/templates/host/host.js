@@ -14,8 +14,7 @@ Template.host.events({
             return;
         }
 
-        document.querySelector('.submitBtn').setAttribute('disabled', 'disabled');
-
+        $('.submitBtn').prop('disabled', true);
         const name = document.getElementById('name').value;
         const description = document.getElementById('description').value;
         const amount = document.getElementById('amount').value;
@@ -26,7 +25,7 @@ Template.host.events({
             ownerAddress: Session.get('connectedAddress'),
             sessionId: Session.get('connectedSessionId'),
         }, (err, res) => {
-            document.querySelector('.submitBtn').removeAttribute('disabled');
+            $('.submitBtn').prop('disabled', false);
             if (err) {
                 errorToast(err.message)
             } else if (res) {

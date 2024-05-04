@@ -10,7 +10,12 @@ const successToast = (message) => {
     toaster.addToast(message, "success")
 }
 
+const infoToast = (message) => {
+    toaster.addToast(message, "info")
+}
+
 export {
     errorToast,
     successToast,
+    infoToast,
 };
