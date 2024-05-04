@@ -71,6 +71,7 @@ const makeClaim = async (userAddress) => {
         const receipt = await sendTx.wait();
         console.log(receipt)// fees are send as value since we are paying the fees in native
         // Handle the result as needed
+        return receipt.transactionHash;
     } catch (error) {
         console.error('Error calling contract function:', error);
     }
